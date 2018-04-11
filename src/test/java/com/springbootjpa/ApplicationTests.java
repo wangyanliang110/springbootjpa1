@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
 
@@ -17,6 +19,28 @@ public class ApplicationTests {
 @Autowired
 private MovieService movieService;
 
+    @Test
+    public void findByActionTimeBetween(){
+        Date beginDate=new Date();
+        Date endDate=new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try{
+            beginDate =sdf.parse("2018-04-10 00:00:00");
+            endDate = sdf.parse("2018-04-11 23:59:59");
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
+        for(Movie movie:movieService.findByActionTimeBetween(beginDate,endDate)){
+            System.out.println(movie.getName()+" "+movie.getPrice());
+        }
+    }
+
+    @Test
+    public void findByNameNotLikeAndPrice(){
+        for(Movie movie:movieService.findByNameNotLikeAndPrice("%头%",70d)){
+            System.out.println(movie.getName()+" "+movie.getPrice());
+        }
+    }
 
     @Test
     public void findByNameLike(){
@@ -24,7 +48,6 @@ private MovieService movieService;
             System.out.println(movie.getName()+" "+movie.getPrice());
         }
     }
-
 
     @Test
     public void findByNameNotLike(){

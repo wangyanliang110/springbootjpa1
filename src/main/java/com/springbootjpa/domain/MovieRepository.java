@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,4 +24,9 @@ public interface MovieRepository extends JpaRepository<Movie,Integer> {
 
     //模糊查询不包含name的数据
     List<Movie> findByNameNotLike(String name);
+
+    //条件查询不包含name 并等于 price的数据
+    List<Movie> findByNameNotLikeAndPrice(String name,Double price);
+
+    List<Movie> findByActionTimeBetween(Date beginDate,Date endDate);
 }
