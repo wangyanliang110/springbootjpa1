@@ -16,11 +16,19 @@ import java.util.Optional;
 public class ApplicationTests {
 @Autowired
 private MovieService movieService;
+
+   @Test
+    public void findByMovieName(){
+       for(Movie movie:movieService.findByMovieName("头号玩家")){
+           System.out.println(movie.getName()+" "+movie.getPrice());
+       }
+   }
+
 	@Test
 	public void save() {
 		Movie movie = new Movie();
-		movie.setName("复仇者联盟3");
-		movie.setPrice(60d);
+		movie.setName("潘多拉魔盒");
+		movie.setPrice(50d);
 		movie.setActionTime(new Date());
 
 		movieService.save(movie);
@@ -44,3 +52,4 @@ private MovieService movieService;
 		movieService.deleteById(3);
 	}
 }
+

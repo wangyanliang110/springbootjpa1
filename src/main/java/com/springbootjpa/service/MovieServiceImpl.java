@@ -3,6 +3,7 @@ package com.springbootjpa.service;
 import com.springbootjpa.domain.Movie;
 import com.springbootjpa.domain.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +19,14 @@ public class MovieServiceImpl implements MovieService{
     @Autowired
     private MovieRepository movieRepository;
 
+    /**
+     * 根据电影名查询
+     * @param name
+     * @return
+     */
+    public List<Movie> findByMovieName(@Param("name")String name){
+        return movieRepository.findByMovieName(name);
+    }
     /**
      * 新增（无id）|修改（有id）
      * @param moive

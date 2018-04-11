@@ -1,6 +1,7 @@
 package com.springbootjpa.service;
 
 import com.springbootjpa.domain.Movie;
+import org.springframework.data.repository.query.Param;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
@@ -18,4 +19,6 @@ public interface MovieService {
     List<Movie> findALL();
 
     Optional<Movie> findById(Integer id);
+
+    List<Movie> findByMovieName(String name);
 }
