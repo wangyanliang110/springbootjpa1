@@ -17,4 +17,10 @@ public interface MovieRepository extends JpaRepository<Movie,Integer> {
     //hql:Hiberante Query language:Hiberante 查询语言-类名+属性名
     @Query(value = "select m from Movie m where m.name=:name")
     List<Movie> findByMovieName(@Param("name")String name);
+
+    //模糊查询包含name的数据
+    List<Movie> findByNameLike(String name);
+
+    //模糊查询不包含name的数据
+    List<Movie> findByNameNotLike(String name);
 }

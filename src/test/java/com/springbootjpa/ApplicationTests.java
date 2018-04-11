@@ -17,6 +17,22 @@ public class ApplicationTests {
 @Autowired
 private MovieService movieService;
 
+
+    @Test
+    public void findByNameLike(){
+        for(Movie movie:movieService.findByNameLike("%头%")){
+            System.out.println(movie.getName()+" "+movie.getPrice());
+        }
+    }
+
+
+    @Test
+    public void findByNameNotLike(){
+        for(Movie movie:movieService.findByNameNotLike("%头%")){
+            System.out.println(movie.getName()+" "+movie.getPrice());
+        }
+    }
+
    @Test
     public void findByMovieName(){
        for(Movie movie:movieService.findByMovieName("头号玩家")){
